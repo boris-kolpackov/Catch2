@@ -1,0 +1,6 @@
+$out_root/
+{
+  include single_include/catch2/
+}
+
+export $out_root/$import.target
