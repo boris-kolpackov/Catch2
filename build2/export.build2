@@ -1,6 +1,6 @@
 $out_root/
 {
-  include single_include/catch2/
+  include single_include/
 }
 
-export $out_root/$import.target
+export $out_root/single_include/$import.target

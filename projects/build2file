@@ -1,0 +1,10 @@
+import libs = catch2%lib{catch2}
+
+# Currently these are the tests that use the "canonical" <catch2/catch.hpp>
+# inclusion.
+#
+# TODO: some tests fail to compile (looks like they need extra macros).
+#
+for t: ExtraTests/cxx{X10-FallbackStringifier \
+                      X11-DisableStringification}
+  ./: $directory($t)/exe{$name($t)}: $t $libs

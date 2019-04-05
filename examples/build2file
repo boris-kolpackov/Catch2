@@ -1,0 +1,41 @@
+import libs = catch2%lib{catch2}
+
+# Single source examples.
+#
+for t: cxx{010-TestCase 231-Cfg-OutputStreams}
+  ./: exe{$name($t)}: $t $libs
+
+# Multi-source examples.
+#
+./: exe{020-TestCase}: cxx{020-TestCase-1 020-TestCase-2} $libs
+
+# Examples to combine with 000-CatchMain.cpp.
+#
+# Since it's a single source, we are not going to bother with a utility
+# library.
+#
+# TODO: 310-Gen-VariablesInGenerators.cpp give a compile error for some reason.
+#
+for t: cxx{030-Asn-Require-Check         \
+           100-Fix-Section               \
+           110-Fix-ClassFixture          \
+           120-Bdd-ScenarioGivenWhenThen \
+           210-Evt-EventListeners        \
+           300-Gen-OwnGenerator          \
+           301-Gen-MapTypeConversion     \
+           311-Gen-CustomCapture}
+  ./: exe{$name($t)}: $t cxx{000-CatchMain} $libs
+
+# Example to combine with 200-Rpt-CatchMain[Reporter].cpp.
+#
+./: exe{TeamCity}: cxx{207-Rpt-TeamCityReporter 200-Rpt-CatchMain} $libs
+
+# These examples fail so let's not run them as tests.
+#
+# TODO: A better way is probably to use testscript and ignore their exit code.
+#
+exe{010-TestCase           \
+    020-TestCase           \
+    210-Evt-EventListeners \
+    030-Asn-Require-Check  \
+    TeamCity}: test = false

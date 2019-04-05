@@ -1,1 +1,5 @@
-./: single_include/catch2/ doc{README.md LICENSE.txt} manifest
+./: single_include/ projects/ examples/ doc{README.md LICENSE.txt} manifest
+
+# Don't install tests or examples.
+#
+projects/ examples/: install = false

@@ -1,0 +1,17 @@
+lib{catch2}: catch2/hxx{*}
+
+# Build options.
+#
+cxx.poptions =+ "-I$src_base"
+
+# Export options.
+#
+lib{catch2}: cxx.export.poptions = "-I$src_base"
+
+# Install into, say, /usr/include/ recreating subdirectories.
+#
+hxx{*}:
+{
+  install         = include/
+  install.subdirs = true
+}
